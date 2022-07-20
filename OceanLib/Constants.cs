@@ -19,5 +19,6 @@
 		public const int TimeToReproduce = 6;
 
 		public const int FrameChangeDelay = 1600;
+		public const int TimerInterval = 150;
 	}
 }

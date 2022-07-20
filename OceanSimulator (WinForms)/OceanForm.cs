@@ -2,6 +2,7 @@
 using OceanLib.Interfaces;
 using System;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace OceanSimulator__WinForms_
 {
@@ -22,6 +23,7 @@ namespace OceanSimulator__WinForms_
         public OceanForm()
         {
             InitializeComponent();
+            DoubleBuffered();
         }
 
         #endregion
@@ -34,14 +36,11 @@ namespace OceanSimulator__WinForms_
 
             oceanDataGridView.MultiSelect = false;
 
-            oceanDataGridView.ColumnCount = 70;
-            oceanDataGridView.RowCount = 25;
+            PrepareField(oceanDataGridView, myFirstOcean);
 
             iterationsProgressBar.Maximum = display.UserNumIteration;
 
-            oceanDataGridView.Dock = DockStyle.Fill;
-
-            timer.Interval = 500;
+            timer.Interval = Constants.TimerInterval;
 
             myFirstOcean.Initialize(display);
 
@@ -109,6 +108,35 @@ namespace OceanSimulator__WinForms_
             display.DisplayOcean(oceanDataGridView, myFirstOcean);
 
             iteration++;
+        }
+
+        private void PrepareField(DataGridView gridView, Ocean owner)
+        {
+            for(int i = 0; i < owner.NumCols; i++)
+            {
+                DataGridViewImageColumn imageCol = new DataGridViewImageColumn();
+                imageCol.ImageLayout = DataGridViewImageCellLayout.Stretch;
+                imageCol.DefaultCellStyle.NullValue = null;
+
+                gridView.Columns.Add(imageCol);
+                gridView.Columns[i].Width = 16;
+            }
+
+            for (int i = 0; i < owner.NumRows; i++)
+            {
+                gridView.Rows.Add();
+                gridView.Rows[i].Height = 16;
+            }
+        }
+
+        private new void DoubleBuffered()
+        {
+            typeof(DataGridView).InvokeMember("DoubleBuffered", BindingFlags.SetProperty
+            | BindingFlags.Instance | BindingFlags.NonPublic, null,
+            oceanDataGridView, new object[] 
+            { 
+                true 
+            });
         }
 
         #endregion

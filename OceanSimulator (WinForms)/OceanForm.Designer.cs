@@ -55,11 +55,14 @@ namespace OceanSimulator__WinForms_
             // 
             // oceanPanel
             // 
+            this.oceanPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.oceanPanel.BackColor = System.Drawing.Color.Transparent;
             this.oceanPanel.Controls.Add(this.oceanDataGridView);
-            this.oceanPanel.Location = new System.Drawing.Point(67, 73);
+            this.oceanPanel.Location = new System.Drawing.Point(65, 80);
             this.oceanPanel.Name = "oceanPanel";
-            this.oceanPanel.Size = new System.Drawing.Size(1120, 403);
+            this.oceanPanel.Size = new System.Drawing.Size(1124, 403);
             this.oceanPanel.TabIndex = 1;
             // 
             // oceanDataGridView
@@ -68,7 +71,8 @@ namespace OceanSimulator__WinForms_
             this.oceanDataGridView.AllowUserToDeleteRows = false;
             this.oceanDataGridView.AllowUserToResizeColumns = false;
             this.oceanDataGridView.AllowUserToResizeRows = false;
-            this.oceanDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.oceanDataGridView.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.oceanDataGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(45)))), ((int)(((byte)(57)))));
             this.oceanDataGridView.CausesValidation = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(45)))), ((int)(((byte)(57)))));
@@ -88,7 +92,6 @@ namespace OceanSimulator__WinForms_
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.oceanDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
-            this.oceanDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.oceanDataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(45)))), ((int)(((byte)(57)))));
             this.oceanDataGridView.Location = new System.Drawing.Point(0, 0);
             this.oceanDataGridView.Name = "oceanDataGridView";
@@ -104,17 +107,17 @@ namespace OceanSimulator__WinForms_
             this.oceanDataGridView.RowHeadersVisible = false;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(45)))), ((int)(((byte)(57)))));
             this.oceanDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.oceanDataGridView.RowTemplate.Height = 16;
             this.oceanDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.oceanDataGridView.ShowCellToolTips = false;
-            this.oceanDataGridView.Size = new System.Drawing.Size(1120, 403);
+            this.oceanDataGridView.Size = new System.Drawing.Size(1124, 403);
             this.oceanDataGridView.TabIndex = 0;
             this.oceanDataGridView.SelectionChanged += new System.EventHandler(this.oceanDataGridView_SelectionChanged);
             // 
             // iterationLabel
             // 
+            this.iterationLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.iterationLabel.AutoSize = true;
-            this.iterationLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.iterationLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.iterationLabel.Font = new System.Drawing.Font("Stencil", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iterationLabel.ForeColor = System.Drawing.Color.White;
             this.iterationLabel.Location = new System.Drawing.Point(83, 37);
@@ -125,7 +128,8 @@ namespace OceanSimulator__WinForms_
             // 
             // iterationNumLabel
             // 
-            this.iterationNumLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.iterationNumLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.iterationNumLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.iterationNumLabel.Font = new System.Drawing.Font("Stencil", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iterationNumLabel.ForeColor = System.Drawing.Color.White;
             this.iterationNumLabel.Location = new System.Drawing.Point(268, 37);
@@ -138,8 +142,9 @@ namespace OceanSimulator__WinForms_
             // 
             // obstaclesLabel
             // 
+            this.obstaclesLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.obstaclesLabel.AutoSize = true;
-            this.obstaclesLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.obstaclesLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.obstaclesLabel.Font = new System.Drawing.Font("Stencil", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.obstaclesLabel.ForeColor = System.Drawing.Color.White;
             this.obstaclesLabel.Location = new System.Drawing.Point(385, 37);
@@ -150,7 +155,8 @@ namespace OceanSimulator__WinForms_
             // 
             // numObstaclesLabel
             // 
-            this.numObstaclesLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.numObstaclesLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.numObstaclesLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.numObstaclesLabel.Font = new System.Drawing.Font("Stencil", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numObstaclesLabel.ForeColor = System.Drawing.Color.White;
             this.numObstaclesLabel.Location = new System.Drawing.Point(560, 37);
@@ -163,8 +169,9 @@ namespace OceanSimulator__WinForms_
             // 
             // preysLabel
             // 
+            this.preysLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.preysLabel.AutoSize = true;
-            this.preysLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.preysLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.preysLabel.Font = new System.Drawing.Font("Stencil", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.preysLabel.ForeColor = System.Drawing.Color.White;
             this.preysLabel.Location = new System.Drawing.Point(669, 37);
@@ -175,7 +182,8 @@ namespace OceanSimulator__WinForms_
             // 
             // numPreyLabel
             // 
-            this.numPreyLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.numPreyLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.numPreyLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.numPreyLabel.Font = new System.Drawing.Font("Stencil", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numPreyLabel.ForeColor = System.Drawing.Color.White;
             this.numPreyLabel.Location = new System.Drawing.Point(787, 37);
@@ -188,8 +196,9 @@ namespace OceanSimulator__WinForms_
             // 
             // predatorsLabel
             // 
+            this.predatorsLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.predatorsLabel.AutoSize = true;
-            this.predatorsLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.predatorsLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.predatorsLabel.Font = new System.Drawing.Font("Stencil", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.predatorsLabel.ForeColor = System.Drawing.Color.White;
             this.predatorsLabel.Location = new System.Drawing.Point(896, 37);
@@ -200,7 +209,8 @@ namespace OceanSimulator__WinForms_
             // 
             // numPredatorsLabel
             // 
-            this.numPredatorsLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.numPredatorsLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.numPredatorsLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.numPredatorsLabel.Font = new System.Drawing.Font("Stencil", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numPredatorsLabel.ForeColor = System.Drawing.Color.White;
             this.numPredatorsLabel.Location = new System.Drawing.Point(1094, 37);
@@ -213,22 +223,28 @@ namespace OceanSimulator__WinForms_
             // 
             // statsPanel
             // 
-            this.statsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.statsPanel.Location = new System.Drawing.Point(67, 12);
+            this.statsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.statsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.statsPanel.Location = new System.Drawing.Point(67, 19);
             this.statsPanel.Name = "statsPanel";
             this.statsPanel.Size = new System.Drawing.Size(1120, 62);
             this.statsPanel.TabIndex = 10;
             // 
             // iterationsProgressBar
             // 
+            this.iterationsProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.iterationsProgressBar.BackColor = System.Drawing.SystemColors.Control;
-            this.iterationsProgressBar.Location = new System.Drawing.Point(267, 492);
+            this.iterationsProgressBar.Location = new System.Drawing.Point(267, 505);
             this.iterationsProgressBar.Name = "iterationsProgressBar";
             this.iterationsProgressBar.Size = new System.Drawing.Size(720, 23);
             this.iterationsProgressBar.TabIndex = 11;
             // 
             // startSimulationButton
             // 
+            this.startSimulationButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.startSimulationButton.BackColor = System.Drawing.Color.Transparent;
             this.startSimulationButton.FlatAppearance.BorderSize = 0;
             this.startSimulationButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(4)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
@@ -268,6 +284,7 @@ namespace OceanSimulator__WinForms_
             this.Controls.Add(this.oceanPanel);
             this.Controls.Add(this.statsPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(1254, 664);
             this.Name = "OceanForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Simulation";

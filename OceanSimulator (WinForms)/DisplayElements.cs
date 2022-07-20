@@ -15,6 +15,13 @@ namespace OceanSimulator__WinForms_
         private int _numPredators;
         private int _numObstacles;
 
+        private Bitmap _obstacleImage = new Bitmap(Properties.Resources.stone);
+        private Bitmap _preyImage = new Bitmap(Properties.Resources.fish);
+        private Bitmap _predatorImage = new Bitmap(Properties.Resources.Shark);
+
+        private char[,] _lastIterationImage;
+        private char[,] _newIterationImage;
+
         #region [Properties]
 
         public int UserNumPrey
@@ -87,7 +94,22 @@ namespace OceanSimulator__WinForms_
             {
                 for (int j = 0; j < Constants.MaxCols; j++)
                 {
-                    gridView.Rows[i].Cells[j].Value = owner.cells[i, j].Image;
+                    if(owner.cells[i, j].Image == 'f')
+                    {
+                        gridView.Rows[i].Cells[j].Value = _preyImage;
+                    }
+                    else if(owner.cells[i, j].Image == 'S')
+                    {
+                        gridView.Rows[i].Cells[j].Value = _predatorImage;
+                    }
+                    else if (owner.cells[i, j].Image == '#')
+                    {
+                        gridView.Rows[i].Cells[j].Value = _obstacleImage;
+                    }
+                    else
+                    {
+                        gridView.Rows[i].Cells[j].Value = null;
+                    }
                 }
             }
         }

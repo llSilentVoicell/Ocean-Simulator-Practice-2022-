@@ -127,16 +127,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\fish.bmp" />
+    <None Include="Resources\fish.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Shark.bmp" />
+    <None Include="Resources\Shark.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\stone.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\пнгнн.bmp" />
+    <None Include="Resources\stone.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

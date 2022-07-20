@@ -233,7 +233,7 @@ namespace OceanSimulator__WinForms_
             // 
             // firstNumIterationsTextBox
             // 
-            this.firstNumIterationsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.firstNumIterationsTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.firstNumIterationsTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(70)))), ((int)(((byte)(87)))));
             this.firstNumIterationsTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.firstNumIterationsTextBox.Font = new System.Drawing.Font("Stencil", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -299,7 +299,7 @@ namespace OceanSimulator__WinForms_
             // 
             // secondNumIterationsTextBox
             // 
-            this.secondNumIterationsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.secondNumIterationsTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.secondNumIterationsTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(70)))), ((int)(((byte)(87)))));
             this.secondNumIterationsTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.secondNumIterationsTextBox.Font = new System.Drawing.Font("Stencil", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
