@@ -1,5 +1,8 @@
 ﻿using OceanLib.Interfaces;
 using System.Collections.Generic;
+using OceanLib.CustomExceptions;
+using System;
+using System.Windows.Forms;
 
 namespace OceanLib
 {
@@ -12,12 +15,17 @@ namespace OceanLib
         private static int _numRows = Constants.MaxRows;
         private static int _numCols = Constants.MaxCols;
 
+        private const int _size = Constants.MaxRows * Constants.MaxCols;
+
+        private bool _isConsole;
+
         private int _numPrey = Constants.DefaultNumPrey;
         private int _numPredators = Constants.DefaultNumPredators;
         private int _numObstacles = Constants.DefaultNumObstacles;
 
         public static Randomize random;
         private AddCells _addCells;
+        private ExceptionInform _inform = new ExceptionInform();
 
         #endregion
 
@@ -26,31 +34,181 @@ namespace OceanLib
         public int NumPrey
         {
             get { return _numPrey; }
-            set { _numPrey = value; }
+
+            set
+            {
+                try
+                {
+                    if (value < 0)
+                    {
+                        throw new InvalidValueForObjectsException();
+                    }
+                    else if (value >= _size)
+                    {
+                        throw new InvalidValueForObjectsException("The amount of preys cannot be greater than the size of the ocean.");
+                    }
+                    else
+                    {
+                        _numPrey = value;
+                    }
+                }
+                catch (InvalidValueForObjectsException ex)
+                {
+                    _inform.Inform(ex.Message);
+                    
+                    Environment.Exit(0);
+                }
+                catch (Exception ex)
+                {
+                    _inform.Inform(ex.Message);
+                    
+                    Environment.Exit(0);
+                }
+            }
         }
 
         public int NumPredators
         {
             get { return _numPredators; }
-            set { _numPredators = value; }
+
+            set 
+            {
+                try
+                {
+                    if (value < 0)
+                    {
+                        throw new InvalidValueForObjectsException();
+                    }
+                    else if (value >= _size)
+                    {
+                        throw new InvalidValueForObjectsException("The amount of predators cannot be greater than the size of the ocean.");
+                    }
+                    else
+                    {
+                        _numPredators = value;
+                    }
+                }
+                catch (InvalidValueForObjectsException ex)
+                {
+                    _inform.Inform(ex.Message);
+                    
+                    Environment.Exit(0);
+                }
+                catch (Exception ex)
+                {
+                    _inform.Inform(ex.Message);
+                    
+                    Environment.Exit(0);
+                }
+            }
         }
 
         public int NumObstacles
         {
             get { return _numObstacles; }
-            set { _numObstacles = value; }
+
+            set 
+            {
+                try
+                {
+                    if (value < 0)
+                    {
+                        throw new InvalidValueForObjectsException();
+                    }
+                    else if (value >= _size)
+                    {
+                        throw new InvalidValueForObjectsException("The amount of obstacles cannot be greater than the size of the ocean.");
+                    }
+                    else
+                    {
+                        _numObstacles = value;
+                    }
+                }
+                catch (InvalidValueForObjectsException ex)
+                {
+                    _inform.Inform(ex.Message);
+                    
+                    Environment.Exit(0);
+                }
+                catch (Exception ex)
+                {
+                    _inform.Inform(ex.Message);
+                    
+                    Environment.Exit(0);
+                }
+            }
         }
 
         public int NumRows
         {
             get { return _numRows; }
-            set { _numRows = value; }
+
+            set 
+            {
+                try
+                {
+                    if (value <= 0)
+                    {
+                        throw new InvalidRowsValueException();
+                    }
+                    else if (value > Constants.MaxRows)
+                    {
+                        throw new InvalidRowsValueException("The number of rows value is too big.");
+                    }
+                    else
+                    {
+                        _numRows = value;
+                    }
+                }
+                catch (InvalidRowsValueException ex)
+                {
+                    _inform.Inform(ex.Message);
+                    
+                    Environment.Exit(0);
+                }
+                catch (Exception ex)
+                {
+                    _inform.Inform(ex.Message);
+                    
+                    Environment.Exit(0);
+                }
+            }
         }
 
         public int NumCols
         {
             get { return _numCols; }
-            set { _numCols = value; }
+
+            set 
+            {
+                try
+                {
+                    if (value <= 0)
+                    {
+                        throw new InvalidColumnsValueException();
+                    }
+                    else if (value > Constants.MaxCols)
+                    {
+                        throw new InvalidColumnsValueException("The number of columns value is too big.");
+                    }
+                    else
+                    {
+                        _numCols = value;
+                    }
+                }
+                catch (InvalidColumnsValueException ex)
+                {
+                    _inform.Inform(ex.Message);
+                    Console.ReadKey();
+                    Environment.Exit(0);
+                }
+                catch (Exception ex)
+                {
+                    _inform.Inform(ex.Message);
+                    Console.ReadKey();
+                    Environment.Exit(0);
+                }
+            }
         }
 
         public Cell[,] Cells
@@ -60,10 +218,22 @@ namespace OceanLib
 
         #endregion
 
+        #region [Constructor]
+
+        public Ocean(bool isConsole)
+        {
+            _isConsole = isConsole;
+            _inform.RegisterHandler(PrintExceptionMessage);
+        }
+
+        #endregion
+
         #region [Methods]
 
         public void Initialize(IOceanView oceanView)
         {
+            CheckValues();
+
             cells = new Cell[_numRows, _numCols];
             random = new Randomize();
             _addCells = new AddCells();
@@ -71,12 +241,40 @@ namespace OceanLib
             InitializeCells(oceanView);
         }
 
+        private void CheckValues()
+        {
+            int sumObjects;
+
+            NumPrey = _numPrey;
+            NumPredators = _numPredators;
+            NumObstacles = _numObstacles;
+
+            NumRows = _numRows;
+            NumCols = _numCols;
+
+            try
+            {
+                sumObjects = NumPrey + NumPredators + NumObstacles;
+
+                if (sumObjects >= _size)
+                {
+                    throw new OceanOverflowException();
+                }
+            }
+            catch (OceanOverflowException ex)
+            {
+                _inform.Inform(ex.Message);
+
+                Environment.Exit(0);
+            }
+        }
+
         public void InitializeCells(IOceanView oceanView)
         {
             _numPrey = oceanView.UserNumPrey;
             _numPredators = oceanView.UserNumPredators;
             _numObstacles = oceanView.UserNumObstacles;
-
+            
             _addCells.AddAllCells(this);
         }
 
@@ -97,6 +295,19 @@ namespace OceanLib
                     cells[i, j].Process(iteration);
                 }
             } 
+        }
+
+        public void PrintExceptionMessage(string message)
+        {
+            if (_isConsole)
+            {
+                Console.WriteLine(message);
+                Console.ReadKey();
+            }
+            else
+            {
+                MessageBox.Show(message);
+            }
         }
 
         #endregion

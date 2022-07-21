@@ -13,8 +13,8 @@ namespace OceanSimulator
             Console.WindowWidth = 160;
             Console.WindowHeight = 40;
 
-            Ocean myFirstOcean = new Ocean();
-            Ocean mySecondOcean = new Ocean();
+            Ocean myFirstOcean = new Ocean(true);
+            Ocean mySecondOcean = new Ocean(true);
 
             OceanViewer oceanView = new OceanViewer();
 
@@ -58,7 +58,7 @@ namespace OceanSimulator
                         IsBackground = false
                     };
 
-                    data.EnterNumOfObjects((int)oceanView.numOfOceans,  viewer);
+                    data.EnterNumOfObjects((int)oceanView.numOfOceans, viewer);
                     data.EnterNumOfIterations(viewer);
 
                     myFirstOcean.Initialize(viewer);

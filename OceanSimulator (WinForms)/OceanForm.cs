@@ -10,7 +10,7 @@ namespace OceanSimulator__WinForms_
     {
         #region [Variables]
 
-        public Ocean myFirstOcean = new Ocean();
+        public Ocean myFirstOcean = new Ocean(false);
         public IOceanView oceanView = new DisplayElements();
         public DisplayElements display = new DisplayElements();
 

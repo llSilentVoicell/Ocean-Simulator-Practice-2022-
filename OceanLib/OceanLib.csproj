@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,7 +47,9 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Coordinate.cs" />
     <Compile Include="CustomExceptions\ExceptionInform.cs" />
+    <Compile Include="CustomExceptions\InvalidColumnsValueException.cs" />
     <Compile Include="CustomExceptions\InvalidInputIterationsException.cs" />
+    <Compile Include="CustomExceptions\InvalidRowsValueException.cs" />
     <Compile Include="CustomExceptions\InvalidValueForObjectsException.cs" />
     <Compile Include="CustomExceptions\OceanNumException.cs" />
     <Compile Include="CustomExceptions\OceanOverflowException.cs" />

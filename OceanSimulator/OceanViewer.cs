@@ -89,11 +89,13 @@ namespace OceanSimulator
             catch(OceanNumException ex)
             {
                 _inform.Inform(ex.Message);
+
                 SetNumOfOceans();
             }
             catch (Exception ex)
             {
                 _inform.Inform(ex.Message);
+
                 SetNumOfOceans();
             }
         }
@@ -224,7 +226,10 @@ namespace OceanSimulator
             catch (OceanOverflowException ex)
             {
                 _inform.Inform(ex.Message);
+
                 Console.WriteLine("The maximum allowable number of objects has been exceeded (Maximum Allowed Number of Objects -> {0})", _maxObjects);
+                Console.ReadKey();
+
                 EnterNumOfObjects(oceanNumber, view);
             }
 
@@ -249,11 +254,13 @@ namespace OceanSimulator
             catch (InvalidInputIterationsException ex)
             {
                 _inform.Inform(ex.Message);
+
                 EnterNumOfIterations(view);
             }
             catch(Exception ex)
             {
                 _inform.Inform(ex.Message);
+
                 EnterNumOfIterations(view);
             }
 
