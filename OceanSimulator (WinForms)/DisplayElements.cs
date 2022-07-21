@@ -19,9 +19,6 @@ namespace OceanSimulator__WinForms_
         private Bitmap _preyImage = new Bitmap(Properties.Resources.fish);
         private Bitmap _predatorImage = new Bitmap(Properties.Resources.Shark);
 
-        private char[,] _lastIterationImage;
-        private char[,] _newIterationImage;
-
         #region [Properties]
 
         public int UserNumPrey

@@ -45,6 +45,7 @@
     <Compile Include="Cell.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Coordinate.cs" />
+    <Compile Include="CustomExceptions\ExceptionInform.cs" />
     <Compile Include="CustomExceptions\InvalidInputIterationsException.cs" />
     <Compile Include="CustomExceptions\InvalidValueForObjectsException.cs" />
     <Compile Include="CustomExceptions\OceanNumException.cs" />

@@ -12,6 +12,8 @@ namespace OceanSimulator__WinForms_
 
         public Form ReturnForm;
 
+        private ExceptionInform _inform = new ExceptionInform();
+
         #endregion
 
         #region [Constructor]
@@ -19,6 +21,7 @@ namespace OceanSimulator__WinForms_
         public SettingsForm()
         {
             InitializeComponent();
+            _inform.RegisterHandler(PrintExceptionMessage);
         }
 
         #endregion
@@ -30,41 +33,18 @@ namespace OceanSimulator__WinForms_
             this.ActiveControl = numOceansLabel;
 
             firstNumIterationsTextBox.MaxLength = 4;
+            firstNumObstaclesTextBox.MaxLength = 4;
+            firstNumPredatorsTextBox.MaxLength = 4;
+            firstNumPreysTextBox.MaxLength = 4;
+            
             secondNumIterationsTextBox.MaxLength = 4;
+            secondNumObstaclesTextBox.MaxLength = 4;
+            secondNumPredatorsTextBox.MaxLength = 4;
+            secondNumPredatorsTextBox.MaxLength = 4;
 
-            numOceansTextBox.Text = "1";
-            numOceansTextBox.ForeColor = Color.CadetBlue;
+            numOceansTextBox.MaxLength = 2;
 
-            firstNumPreysTextBox.Text = Constants.DefaultNumPrey.ToString();
-            firstNumPreysTextBox.ForeColor = Color.CadetBlue;
-
-            firstNumPredatorsTextBox.Text = Constants.DefaultNumPredators.ToString();
-            firstNumPredatorsTextBox.ForeColor = Color.CadetBlue;
-
-            firstNumObstaclesTextBox.Text = Constants.DefaultNumObstacles.ToString();
-            firstNumObstaclesTextBox.ForeColor = Color.CadetBlue;
-
-            firstNumIterationsTextBox.Text = Constants.DefaultNumIterations.ToString();
-            firstNumIterationsTextBox.ForeColor = Color.CadetBlue;
-
-            secondNumPreysTextBox.Text = Constants.DefaultNumPrey.ToString();
-            secondNumPreysTextBox.ForeColor = Color.CadetBlue;
-
-            secondNumPredatorsTextBox.Text = Constants.DefaultNumPredators.ToString();
-            secondNumPredatorsTextBox.ForeColor = Color.CadetBlue;
-
-            secondNumObstaclesTextBox.Text = Constants.DefaultNumObstacles.ToString();
-            secondNumObstaclesTextBox.ForeColor = Color.CadetBlue;
-
-            secondNumIterationsTextBox.Text = Constants.DefaultNumIterations.ToString();
-            secondNumIterationsTextBox.ForeColor = Color.CadetBlue;
-
-            secondOceanLabel.ForeColor = Color.FromArgb(78, 94, 78);
-
-            secondNumPreysTextBox.Enabled = false;
-            secondNumPredatorsTextBox.Enabled = false;
-            secondNumObstaclesTextBox.Enabled = false;
-            secondNumIterationsTextBox.Enabled = false;
+            SetTextBoxDefaultSettings();
         }
 
         private void startButton_Click(object sender, EventArgs e)
@@ -78,12 +58,12 @@ namespace OceanSimulator__WinForms_
 
             if (numOceansTextBox.Text == "1")
             {
-                DataSet(firstOcean, firstNumIterationsTextBox, firstNumObstaclesTextBox, firstNumPredatorsTextBox, firstNumPreysTextBox);
+                SetData(firstOcean, firstNumIterationsTextBox, firstNumObstaclesTextBox, firstNumPredatorsTextBox, firstNumPreysTextBox);
             }
             if(numOceansTextBox.Text == "2")
             {
-                DataSet(firstOcean, firstNumIterationsTextBox, firstNumObstaclesTextBox, firstNumPredatorsTextBox, firstNumPreysTextBox);
-                DataSet(secondOcean, secondNumIterationsTextBox, secondNumObstaclesTextBox, secondNumPredatorsTextBox, secondNumPreysTextBox);
+                SetData(firstOcean, firstNumIterationsTextBox, firstNumObstaclesTextBox, firstNumPredatorsTextBox, firstNumPreysTextBox);
+                SetData(secondOcean, secondNumIterationsTextBox, secondNumObstaclesTextBox, secondNumPredatorsTextBox, secondNumPreysTextBox);
             }
             else
             {
@@ -102,10 +82,14 @@ namespace OceanSimulator__WinForms_
                 catch (OceanNumException ex) when (isBigger || isLower)
                 {
                     MessageBox.Show(ex.Message);
+
+                    SetTextBoxDefaultSettings();
                 }
                 catch(Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+
+                    SetTextBoxDefaultSettings();
                 }
             }
         }
@@ -124,82 +108,82 @@ namespace OceanSimulator__WinForms_
 
         private void firstNumPreysTextBox_Enter(object sender, EventArgs e)
         {
-            TextBoxEnter(firstNumPreysTextBox);
+            EnterTextBox(firstNumPreysTextBox);
         }
 
         private void firstNumPreysTextBox_Leave(object sender, EventArgs e)
         {
-            TextBoxLeave(firstNumPreysTextBox, Constants.DefaultNumPrey);
+            LeaveTextBox(firstNumPreysTextBox, Constants.DefaultNumPrey);
         }
 
         private void firstNumPredatorsTextBox_Enter(object sender, EventArgs e)
         {
-            TextBoxEnter(firstNumPredatorsTextBox);
+            EnterTextBox(firstNumPredatorsTextBox);
         }
 
         private void firstNumPredatorsTextBox_Leave(object sender, EventArgs e)
         {
-            TextBoxLeave(firstNumPredatorsTextBox, Constants.DefaultNumPredators);
+            LeaveTextBox(firstNumPredatorsTextBox, Constants.DefaultNumPredators);
         }
 
         private void firstNumObstaclesTextBox_Enter(object sender, EventArgs e)
         {
-            TextBoxEnter(firstNumObstaclesTextBox);
+            EnterTextBox(firstNumObstaclesTextBox);
         }
 
         private void firstNumObstaclesTextBox_Leave(object sender, EventArgs e)
         {
-            TextBoxLeave(firstNumObstaclesTextBox, Constants.DefaultNumObstacles);
+            LeaveTextBox(firstNumObstaclesTextBox, Constants.DefaultNumObstacles);
         }
 
         private void firstNumIterationsTextBox_Enter(object sender, EventArgs e)
         {
-            TextBoxEnter(firstNumIterationsTextBox);
+            EnterTextBox(firstNumIterationsTextBox);
         }
 
         private void firstNumIterationsTextBox_Leave(object sender, EventArgs e)
         {
-            TextBoxLeave(firstNumIterationsTextBox, Constants.DefaultNumIterations);
+            LeaveTextBox(firstNumIterationsTextBox, Constants.DefaultNumIterations);
         }
 
         private void secondNumPreysTextBox_Enter(object sender, EventArgs e)
         {
-            TextBoxEnter(secondNumPreysTextBox);
+            EnterTextBox(secondNumPreysTextBox);
         }
 
         private void secondNumPreysTextBox_Leave(object sender, EventArgs e)
         {
-            TextBoxLeave(secondNumPreysTextBox, Constants.DefaultNumPrey);
+            LeaveTextBox(secondNumPreysTextBox, Constants.DefaultNumPrey);
         }
 
         private void secondNumPredatorsTextBox_Enter(object sender, EventArgs e)
         {
-            TextBoxEnter(secondNumPredatorsTextBox);
+            EnterTextBox(secondNumPredatorsTextBox);
         }
 
         private void secondNumPredatorsTextBox_Leave(object sender, EventArgs e)
         {
-            TextBoxLeave(secondNumPredatorsTextBox, Constants.DefaultNumPredators);
+            LeaveTextBox(secondNumPredatorsTextBox, Constants.DefaultNumPredators);
         }
 
         private void secondNumObstaclesTextBox_Enter(object sender, EventArgs e)
         {
-            TextBoxEnter(secondNumObstaclesTextBox);
+            EnterTextBox(secondNumObstaclesTextBox);
         }
 
         private void secondNumObstaclesTextBox_Leave(object sender, EventArgs e)
         {
-            TextBoxLeave(secondNumObstaclesTextBox, Constants.DefaultNumObstacles);
+            LeaveTextBox(secondNumObstaclesTextBox, Constants.DefaultNumObstacles);
         }
 
         private void secondNumIterationsTextBox_Enter(object sender, EventArgs e)
         {
-            TextBoxEnter(secondNumIterationsTextBox);
+            EnterTextBox(secondNumIterationsTextBox);
         }
 
         private void secondNumIterationsTextBox_Leave(object sender, EventArgs e)
         {
-            TextBoxLeave(secondNumIterationsTextBox, Constants.DefaultNumIterations);
+            LeaveTextBox(secondNumIterationsTextBox, Constants.DefaultNumIterations);
         }
 
         private void numOceansTextBox_Enter(object sender, EventArgs e)
@@ -246,13 +230,13 @@ namespace OceanSimulator__WinForms_
 
         #region [Methods]
 
-        private void DataSet(OceanForm ocean, TextBox iteratinonTextBox, TextBox obstaclesTextBox, TextBox predatorsTextBox, TextBox preysTextBox)
+        private void SetData(OceanForm ocean, TextBox iteratinonTextBox, TextBox obstaclesTextBox, TextBox predatorsTextBox, TextBox preysTextBox)
         {
-            bool isConvertedIterations = false;
-            bool isConvertedObstacles = false;
-            bool isConvertedPredators = false;
-            bool isConvertedPreys = false;
-            bool isNotOverflowed = false;
+            bool isConvertedIterations;
+            bool isConvertedObstacles;
+            bool isConvertedPredators;
+            bool isConvertedPreys;
+            bool isNotOverflowed;
 
             int maxObjects = Constants.MaxRows * Constants.MaxCols;
             int sumObjects;
@@ -270,13 +254,17 @@ namespace OceanSimulator__WinForms_
             }
             catch (InvalidInputIterationsException ex)
             {
-                MessageBox.Show(ex.Message);
+                _inform.Inform(ex.Message);
+
+                SetTextBoxDefaultSettings();
 
                 isConvertedIterations = false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                _inform.Inform(ex.Message);
+
+                SetTextBoxDefaultSettings();
 
                 isConvertedIterations = false;
             }
@@ -300,13 +288,17 @@ namespace OceanSimulator__WinForms_
                 }
                 catch (OceanOverflowException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    _inform.Inform(ex.Message);
+
+                    SetTextBoxDefaultSettings();
 
                     isNotOverflowed = false;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    _inform.Inform(ex.Message);
+
+                    SetTextBoxDefaultSettings();
 
                     isNotOverflowed = false;
                 }
@@ -318,7 +310,7 @@ namespace OceanSimulator__WinForms_
             }
         }
 
-        private void TextBoxEnter(TextBox numTextBox)
+        private void EnterTextBox(TextBox numTextBox)
         {
             if (numTextBox.ForeColor == Color.CadetBlue)
             {
@@ -327,7 +319,7 @@ namespace OceanSimulator__WinForms_
             }
         }
 
-        private void TextBoxLeave(TextBox numTextBox, int defaultNum)
+        private void LeaveTextBox(TextBox numTextBox, int defaultNum)
         {
             if (numTextBox.Text == "")
             {
@@ -351,16 +343,62 @@ namespace OceanSimulator__WinForms_
             }
             catch (InvalidValueForObjectsException ex)
             {
-                MessageBox.Show(ex.Message);
+                _inform.Inform(ex.Message);
+
+                SetTextBoxDefaultSettings();
 
                 return (false, numParticipants);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                _inform.Inform(ex.Message);
+
+                SetTextBoxDefaultSettings();
 
                 return (false, numParticipants);
             }
+        }
+
+        private void SetTextBoxDefaultSettings() 
+        {
+            numOceansTextBox.Text = "1";
+            numOceansTextBox.ForeColor = Color.CadetBlue;
+
+            firstNumPreysTextBox.Text = Constants.DefaultNumPrey.ToString();
+            firstNumPreysTextBox.ForeColor = Color.CadetBlue;
+
+            firstNumPredatorsTextBox.Text = Constants.DefaultNumPredators.ToString();
+            firstNumPredatorsTextBox.ForeColor = Color.CadetBlue;
+
+            firstNumObstaclesTextBox.Text = Constants.DefaultNumObstacles.ToString();
+            firstNumObstaclesTextBox.ForeColor = Color.CadetBlue;
+
+            firstNumIterationsTextBox.Text = Constants.DefaultNumIterations.ToString();
+            firstNumIterationsTextBox.ForeColor = Color.CadetBlue;
+
+            secondNumPreysTextBox.Text = Constants.DefaultNumPrey.ToString();
+            secondNumPreysTextBox.ForeColor = Color.CadetBlue;
+
+            secondNumPredatorsTextBox.Text = Constants.DefaultNumPredators.ToString();
+            secondNumPredatorsTextBox.ForeColor = Color.CadetBlue;
+
+            secondNumObstaclesTextBox.Text = Constants.DefaultNumObstacles.ToString();
+            secondNumObstaclesTextBox.ForeColor = Color.CadetBlue;
+
+            secondNumIterationsTextBox.Text = Constants.DefaultNumIterations.ToString();
+            secondNumIterationsTextBox.ForeColor = Color.CadetBlue;
+
+            secondOceanLabel.ForeColor = Color.FromArgb(78, 94, 78);
+
+            secondNumPreysTextBox.Enabled = false;
+            secondNumPredatorsTextBox.Enabled = false;
+            secondNumObstaclesTextBox.Enabled = false;
+            secondNumIterationsTextBox.Enabled = false;
+        }
+
+        void PrintExceptionMessage(string message)
+        {
+            MessageBox.Show(message);
         }
 
         #endregion

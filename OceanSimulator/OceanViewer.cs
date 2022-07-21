@@ -28,6 +28,8 @@ namespace OceanSimulator
         private char[,] _newIterationImage;
         private string _updatedStats;
 
+        private ExceptionInform _inform = new ExceptionInform();
+
         private ElementsForDisplay _getImage = new ElementsForDisplay();
 
         #endregion
@@ -60,6 +62,15 @@ namespace OceanSimulator
 
         #endregion
 
+        #region [Constructor]
+
+        public OceanViewer()
+        {
+            _inform.RegisterHandler(PrintExceptionMessage);
+        }
+
+        #endregion
+
         #region [Data entry]
 
         public void SetNumOfOceans()
@@ -77,12 +88,12 @@ namespace OceanSimulator
             }
             catch(OceanNumException ex)
             {
-                Console.WriteLine(ex.Message);
+                _inform.Inform(ex.Message);
                 SetNumOfOceans();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                _inform.Inform(ex.Message);
                 SetNumOfOceans();
             }
         }
@@ -126,11 +137,11 @@ namespace OceanSimulator
                 }
                 catch (InvalidValueForObjectsException ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    _inform.Inform(ex.Message);
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    _inform.Inform(ex.Message);
                 }
             }
 
@@ -159,11 +170,11 @@ namespace OceanSimulator
                 }
                 catch (InvalidValueForObjectsException ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    _inform.Inform(ex.Message);
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    _inform.Inform(ex.Message);
                 }
             }
 
@@ -192,11 +203,11 @@ namespace OceanSimulator
                 }
                 catch (InvalidValueForObjectsException ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    _inform.Inform(ex.Message);
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    _inform.Inform(ex.Message);
                 }
             }
 
@@ -212,7 +223,7 @@ namespace OceanSimulator
             }
             catch (OceanOverflowException ex)
             {
-                Console.WriteLine(ex.Message);
+                _inform.Inform(ex.Message);
                 Console.WriteLine("The maximum allowable number of objects has been exceeded (Maximum Allowed Number of Objects -> {0})", _maxObjects);
                 EnterNumOfObjects(oceanNumber, view);
             }
@@ -237,12 +248,12 @@ namespace OceanSimulator
             }
             catch (InvalidInputIterationsException ex)
             {
-                Console.WriteLine(ex.Message);
+                _inform.Inform(ex.Message);
                 EnterNumOfIterations(view);
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                _inform.Inform(ex.Message);
                 EnterNumOfIterations(view);
             }
 
@@ -334,6 +345,11 @@ namespace OceanSimulator
                 Console.WriteLine();
                 Console.ReadKey();
             }
+        }
+
+        void PrintExceptionMessage(string message)
+        {
+            Console.WriteLine(message);
         }
 
         #endregion
