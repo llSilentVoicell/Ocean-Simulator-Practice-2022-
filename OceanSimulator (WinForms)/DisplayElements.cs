@@ -17,6 +17,7 @@ namespace OceanSimulator__WinForms_
 
         private Bitmap _obstacleImage = new Bitmap(Properties.Resources.stone);
         private Bitmap _preyImage = new Bitmap(Properties.Resources.fish);
+        private Bitmap _smartPreyImage = new Bitmap(Properties.Resources.smart_fish);
         private Bitmap _predatorImage = new Bitmap(Properties.Resources.Shark);
 
         #region [Properties]
@@ -56,7 +57,7 @@ namespace OceanSimulator__WinForms_
             {
                 for (int j = 0; j < owner.NumCols; j++)
                 {
-                    if (owner.Cells[i, j].Image == 'f')
+                    if (owner.Cells[i, j].Image == 'D' || owner.Cells[i, j].Image == 'F')
                     {
                         preys++;
                     }
@@ -91,9 +92,13 @@ namespace OceanSimulator__WinForms_
             {
                 for (int j = 0; j < Constants.MaxCols; j++)
                 {
-                    if(owner.cells[i, j].Image == 'f')
+                    if(owner.cells[i, j].Image == 'D')
                     {
                         gridView.Rows[i].Cells[j].Value = _preyImage;
+                    }
+                    else if (owner.cells[i, j].Image == 'F')
+                    {
+                        gridView.Rows[i].Cells[j].Value = _smartPreyImage;
                     }
                     else if(owner.cells[i, j].Image == 'S')
                     {

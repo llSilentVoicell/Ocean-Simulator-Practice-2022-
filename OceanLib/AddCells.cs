@@ -78,8 +78,18 @@ namespace OceanLib
         {
             for (int i = 0; i < owner.NumPrey; i++)
             {
-                Coordinate coord = GetEmptyCellCoord(owner);
-                owner.cells[coord.X, coord.Y] = new Prey(coord, owner, Constants.TimeToReproduce);
+                int smartOrNot = random.Next(0, 2);
+
+                if (smartOrNot == 0)
+                {
+                    Coordinate coord = GetEmptyCellCoord(owner);
+                    owner.cells[coord.X, coord.Y] = new Prey(coord, owner, Constants.TimeToReproduce);
+                }
+                if (smartOrNot == 1)
+                {
+                    Coordinate coord = GetEmptyCellCoord(owner);
+                    owner.cells[coord.X, coord.Y] = new SmartPrey(coord, owner, Constants.TimeToReproduce);
+                }
             }
         }
 

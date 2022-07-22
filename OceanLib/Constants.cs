@@ -11,7 +11,8 @@
 		public const int DefaultNumIterations = 1000;
 
 		public const char DefaultImage = '-';
-		public const char DefaultPreyImage = 'f';
+		public const char DefaultPreyImage = 'D';
+		public const char DefaultSmartPreyImage = 'F';
 		public const char DefaultPredImage = 'S';
 		public const char ObstacleImage = '#';
 

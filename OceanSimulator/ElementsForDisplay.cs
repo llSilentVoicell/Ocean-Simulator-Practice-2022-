@@ -16,9 +16,8 @@ namespace OceanSimulator
             {
                 for (int j = 0; j < owner.NumCols; j++)
                 {
-                    if (owner.Cells[i, j].Image == 'f')
+                    if (owner.Cells[i, j].Image == 'D' || owner.Cells[i, j].Image == 'F')
                     {
-
                         preys++;
                     }
                     else if (owner.Cells[i, j].Image == 'S')

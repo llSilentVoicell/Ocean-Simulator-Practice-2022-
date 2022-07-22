@@ -399,7 +399,7 @@ namespace OceanLib
 
             if (coord.X + 1 < NumRows)
             {
-                if (Cells[coord.X + 1, coord.Y].GetType() == typeof(Prey))
+                if (Cells[coord.X + 1, coord.Y].GetType() == typeof(Prey) || Cells[coord.X + 1, coord.Y].GetType() == typeof(SmartPrey))
                 {
                     coordinates.Add(Cells[coord.X + 1, coord.Y].OffSet);
                 }
@@ -407,7 +407,7 @@ namespace OceanLib
 
             if (coord.X - 1 >= 0)
             {
-                if (Cells[coord.X - 1, coord.Y].GetType() == typeof(Prey))
+                if (Cells[coord.X - 1, coord.Y].GetType() == typeof(Prey) || Cells[coord.X - 1, coord.Y].GetType() == typeof(SmartPrey))
                 {
                     coordinates.Add(Cells[coord.X - 1, coord.Y].OffSet);
                 }
@@ -415,7 +415,7 @@ namespace OceanLib
 
             if (coord.Y + 1 < NumCols)
             {
-                if (Cells[coord.X, coord.Y + 1].GetType() == typeof(Prey))
+                if (Cells[coord.X, coord.Y + 1].GetType() == typeof(Prey) || Cells[coord.X, coord.Y + 1].GetType() == typeof(SmartPrey))
                 {
                     coordinates.Add(Cells[coord.X, coord.Y + 1].OffSet);
                 }
@@ -423,7 +423,7 @@ namespace OceanLib
 
             if (coord.Y - 1 >= 0)
             {
-                if (Cells[coord.X, coord.Y - 1].GetType() == typeof(Prey))
+                if (Cells[coord.X, coord.Y - 1].GetType() == typeof(Prey) || Cells[coord.X, coord.Y - 1].GetType() == typeof(SmartPrey))
                 {
                     coordinates.Add(Cells[coord.X, coord.Y - 1].OffSet);
                 }
@@ -431,7 +431,7 @@ namespace OceanLib
 
             if (coord.X + 1 < NumRows && coord.Y + 1 < NumCols)
             {
-                if (Cells[coord.X + 1, coord.Y + 1].GetType() == typeof(Prey))
+                if (Cells[coord.X + 1, coord.Y + 1].GetType() == typeof(Prey) || Cells[coord.X + 1, coord.Y + 1].GetType() == typeof(SmartPrey))
                 {
                     coordinates.Add(Cells[coord.X + 1, coord.Y + 1].OffSet);
                 }
@@ -439,7 +439,7 @@ namespace OceanLib
 
             if (coord.X + 1 < NumRows && coord.Y - 1 >= 0)
             {
-                if (Cells[coord.X + 1, coord.Y - 1].GetType() == typeof(Prey))
+                if (Cells[coord.X + 1, coord.Y - 1].GetType() == typeof(Prey) || Cells[coord.X + 1, coord.Y - 1].GetType() == typeof(SmartPrey))
                 {
                     coordinates.Add(Cells[coord.X + 1, coord.Y - 1].OffSet);
                 }
@@ -447,7 +447,7 @@ namespace OceanLib
 
             if (coord.X - 1 >= 0 && coord.Y - 1 >= 0)
             {
-                if (Cells[coord.X - 1, coord.Y - 1].GetType() == typeof(Prey))
+                if (Cells[coord.X - 1, coord.Y - 1].GetType() == typeof(Prey) || Cells[coord.X - 1, coord.Y - 1].GetType() == typeof(SmartPrey))
                 {
                     coordinates.Add(Cells[coord.X - 1, coord.Y - 1].OffSet);
                 }
@@ -455,7 +455,7 @@ namespace OceanLib
 
             if (coord.X - 1 >= 0 && coord.Y + 1 < NumCols)
             {
-                if (Cells[coord.X - 1, coord.Y + 1].GetType() == typeof(Prey))
+                if (Cells[coord.X - 1, coord.Y + 1].GetType() == typeof(Prey) || Cells[coord.X - 1, coord.Y + 1].GetType() == typeof(SmartPrey))
                 {
                     coordinates.Add(Cells[coord.X - 1, coord.Y + 1].OffSet);
                 }
@@ -467,6 +467,177 @@ namespace OceanLib
             choice = random.RandomNumber(coordinates.Count - 1);
 
             return coordinates[choice];
+        }
+
+        public Coordinate GetPredatorNeighborCoord(Coordinate coord)
+        {
+            List<Coordinate> coordinates = new List<Coordinate>();
+
+            if (coord.X + 1 < NumRows && coord.X - 1 >= 0)
+            {
+                if (Cells[coord.X + 1, coord.Y].GetType() == typeof(Predator))
+                {
+                    if (Cells[coord.X - 1, coord.Y].GetType() != typeof(Predator))
+                    {
+                        if (coordinates.Count != 1)
+                        {
+                            coordinates.Add(Cells[coord.X - 1, coord.Y].OffSet);
+                        }
+                        else
+                        {
+                            coordinates.RemoveAt(coordinates.Count - 1);
+                            coordinates.Add(Cells[coord.X - 1, coord.Y].OffSet);
+                        }
+                    }
+                    
+                }
+            }
+
+            
+
+                if (coord.X - 1 >= 0 && coord.X + 1 < NumRows)
+                {
+                    if (Cells[coord.X - 1, coord.Y].GetType() == typeof(Predator))
+                    {
+                        if (Cells[coord.X + 1, coord.Y].GetType() != typeof(Predator))
+                        {
+                        if (coordinates.Count != 1)
+                        {
+                            coordinates.Add(Cells[coord.X + 1, coord.Y].OffSet);
+                        }
+                        else
+                        {
+                            coordinates.RemoveAt(coordinates.Count - 1);
+                            coordinates.Add(Cells[coord.X + 1, coord.Y].OffSet);
+                        }
+                    }
+                    }
+                }
+
+                if (coord.Y + 1 < NumCols && coord.Y - 1 >= 0)
+                {
+                    if (Cells[coord.X, coord.Y + 1].GetType() == typeof(Predator))
+                    {
+                        if (Cells[coord.X, coord.Y - 1].GetType() != typeof(Predator))
+                        {
+                        if (coordinates.Count != 1)
+                        {
+                            coordinates.Add(Cells[coord.X, coord.Y - 1].OffSet);
+                        }
+                        else
+                        {
+                            coordinates.RemoveAt(coordinates.Count - 1);
+                            coordinates.Add(Cells[coord.X, coord.Y - 1].OffSet);
+                        }
+                    }
+
+                    }
+                }
+
+                if (coord.Y - 1 >= 0 && coord.Y + 1 < NumCols)
+                {
+                    if (Cells[coord.X, coord.Y - 1].GetType() == typeof(Predator))
+                    {
+                        if (Cells[coord.X, coord.Y + 1].GetType() != typeof(Predator))
+                        {
+                        if (coordinates.Count != 1)
+                        {
+                            coordinates.Add(Cells[coord.X, coord.Y + 1].OffSet);
+                        }
+                        else
+                        {
+                            coordinates.RemoveAt(coordinates.Count - 1);
+                            coordinates.Add(Cells[coord.X, coord.Y + 1].OffSet);
+                        }
+                    }
+                    }
+                }
+
+                if (coord.X + 1 < NumRows && coord.Y + 1 < NumCols && coord.X - 1 >= 0 && coord.Y - 1 >= 0)
+                {
+                    if (Cells[coord.X + 1, coord.Y + 1].GetType() == typeof(Predator))
+                    {
+                        if (Cells[coord.X - 1, coord.Y - 1].GetType() != typeof(Predator))
+                        {
+                        if (coordinates.Count != 1)
+                        {
+                            coordinates.Add(Cells[coord.X - 1, coord.Y - 1].OffSet);
+                        }
+                        else
+                        {
+                            coordinates.RemoveAt(coordinates.Count - 1);
+                            coordinates.Add(Cells[coord.X - 1, coord.Y - 1].OffSet);
+                        }
+                    }
+                    }
+                }
+
+                if (coord.X - 1 >= 0 && coord.Y - 1 >= 0 && coord.X + 1 < NumRows && coord.Y + 1 < NumCols)
+                {
+                    if (Cells[coord.X - 1, coord.Y - 1].GetType() == typeof(Predator))
+                    {
+                        if (Cells[coord.X + 1, coord.Y + 1].GetType() != typeof(Predator))
+                        {
+                        if (coordinates.Count != 1)
+                        {
+                            coordinates.Add(Cells[coord.X + 1, coord.Y + 1].OffSet);
+                        }
+                        else
+                        {
+                            coordinates.RemoveAt(coordinates.Count - 1);
+                            coordinates.Add(Cells[coord.X + 1, coord.Y + 1].OffSet);
+                        }
+                    }
+
+                    }
+                }
+
+                if (coord.X + 1 < NumRows && coord.Y - 1 >= 0 && coord.X - 1 >= 0 && coord.Y + 1 < NumCols)
+                {
+                    if (Cells[coord.X + 1, coord.Y - 1].GetType() == typeof(Predator))
+                    {
+                        if (Cells[coord.X - 1, coord.Y + 1].GetType() != typeof(Predator))
+                        {
+                        if (coordinates.Count != 1)
+                        {
+                            coordinates.Add(Cells[coord.X - 1, coord.Y + 1].OffSet);
+                        }
+                        else
+                        {
+                            coordinates.RemoveAt(coordinates.Count - 1);
+                            coordinates.Add(Cells[coord.X - 1, coord.Y + 1].OffSet);
+                        }
+                    }
+
+                    }
+                }
+
+                if (coord.X - 1 >= 0 && coord.Y + 1 < NumCols && coord.X + 1 < NumRows && coord.Y - 1 >= 0)
+                {
+                    if (Cells[coord.X - 1, coord.Y + 1].GetType() == typeof(Predator))
+                    {
+                        if (Cells[coord.X + 1, coord.Y - 1].GetType() != typeof(Predator))
+                        {
+                        if (coordinates.Count != 1)
+                        {
+                            coordinates.Add(Cells[coord.X + 1, coord.Y - 1].OffSet);
+                        }
+                        else
+                        {
+                            coordinates.RemoveAt(coordinates.Count - 1);
+                            coordinates.Add(Cells[coord.X + 1, coord.Y - 1].OffSet);
+                        }
+                    }
+                    }
+                }
+            
+
+            if (coordinates.Count == 0)
+            {
+                return null;
+            }
+
+            return coordinates[0];
         }
 
         #endregion

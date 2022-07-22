@@ -2,34 +2,20 @@
 
 namespace OceanLib
 {
-    public class Predator : Prey
+    public class SmartPrey : Prey
     {
-        #region [Variables]
-
-        protected int _timeToFeed;
-
-        #endregion
-
-        #region [Constructor]
-
-        public Predator(Coordinate offset, IOceanCell owner, int timeToProcreate, int timeToEat) : base(offset, owner, timeToProcreate)
+        public SmartPrey(Coordinate offset, IOceanCell owner, int timeToProcreate) : base(offset, owner, timeToProcreate)
         {
             _timeToReproduce = timeToProcreate;
-            _timeToFeed = timeToEat;
-            image = Constants.DefaultPredImage;
-
+            image = Constants.DefaultSmartPreyImage;
             wasNotProcessed = false;
         }
-
-        #endregion
-
-        #region [Methods]
 
         public override Prey Reproduce(Coordinate coord)
         {
             if (coord != null)
             {
-                Predator newborn = new Predator(coord, _owner, Constants.TimeToReproduce, Constants.TimeToFeed);
+                SmartPrey newborn = new SmartPrey(coord, _owner, Constants.TimeToReproduce);
                 _timeToReproduce = Constants.TimeToReproduce;
 
                 return newborn;
@@ -42,33 +28,28 @@ namespace OceanLib
 
         protected override void Move(Coordinate oldCoord, Coordinate newCoord, int iteration)
         {
-            Coordinate preyCoord = _owner.GetPreyNeighborCoord(OffSet);
+            Coordinate predatorCoord = _owner.GetPredatorNeighborCoord(OffSet);
 
             if (iteration != _lastIterationNumber)
             {
                 _timeToReproduce--;
-                _timeToFeed--;
                 _lastIterationNumber = iteration;
             }
 
-            if (_timeToFeed <= 0)
+            if (predatorCoord != null)
             {
                 AssignCellAt(oldCoord, new Cell(oldCoord, _owner));
-            }
-            else if (preyCoord != null)
-            {
-                AssignCellAt(oldCoord, new Cell(oldCoord, _owner));
-                AssignCellAt(preyCoord, new Predator(preyCoord, _owner, _timeToReproduce, Constants.TimeToFeed));
+                AssignCellAt(predatorCoord, new SmartPrey(predatorCoord, _owner, _timeToReproduce));
             }
             else if (_timeToReproduce <= 0)
             {
                 AssignCellAt(oldCoord, Reproduce(oldCoord));
-                AssignCellAt(newCoord, new Predator(newCoord, _owner, _timeToReproduce, _timeToFeed));
+                AssignCellAt(newCoord, new SmartPrey(newCoord, _owner, _timeToReproduce));
             }
             else
             {
                 AssignCellAt(oldCoord, new Cell(oldCoord, _owner));
-                AssignCellAt(newCoord, new Predator(newCoord, _owner, _timeToReproduce, _timeToFeed));
+                AssignCellAt(newCoord, new SmartPrey(newCoord, _owner, _timeToReproduce));
             }
         }
 
@@ -82,7 +63,5 @@ namespace OceanLib
                 }
             }
         }
-
-        #endregion
     }
 }
