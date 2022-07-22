@@ -9,6 +9,8 @@ namespace OceanLib
         protected int _timeToReproduce = Constants.TimeToReproduce;
         protected int _lastIterationNumber = 0;
 
+        protected IDirection _dir;
+
         #endregion
 
         #region [Constructor]
@@ -17,7 +19,10 @@ namespace OceanLib
         {
             _timeToReproduce = timeToProcreate;
             image = Constants.DefaultPreyImage;
+
             wasNotProcessed = false;
+
+            _dir = new ParticipantsDirection(owner);
         }
 
         #endregion
@@ -62,9 +67,9 @@ namespace OceanLib
         {
             if (wasNotProcessed == true)
             {
-                if (_owner.GetEmptyNeighborCoord(OffSet) != OffSet)
+                if (_dir.GetEmptyNeighborCoord(OffSet) != OffSet)
                 {
-                    Move(OffSet, _owner.GetEmptyNeighborCoord(OffSet), iteration);
+                    Move(OffSet, _dir.GetEmptyNeighborCoord(OffSet), iteration);
                 }
             }
         }

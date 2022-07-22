@@ -7,6 +7,8 @@ namespace OceanSimulator__WinForms_
 {
     public class DisplayElements : IDisplayElements, IOceanView
     {
+        #region [Variables]
+
         private int numIterations;
 
         public int numOfOceans;
@@ -19,6 +21,8 @@ namespace OceanSimulator__WinForms_
         private Bitmap _preyImage = new Bitmap(Properties.Resources.fish);
         private Bitmap _smartPreyImage = new Bitmap(Properties.Resources.smart_fish);
         private Bitmap _predatorImage = new Bitmap(Properties.Resources.Shark);
+
+        #endregion
 
         #region [Properties]
 
@@ -47,6 +51,8 @@ namespace OceanSimulator__WinForms_
         }
 
         #endregion
+
+        #region [Methods]
 
         public void CountParticipants(Ocean owner)
         {
@@ -115,5 +121,7 @@ namespace OceanSimulator__WinForms_
                 }
             }
         }
+
+        #endregion
     }
 }

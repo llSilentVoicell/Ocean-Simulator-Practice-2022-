@@ -19,6 +19,8 @@ namespace OceanLib
             image = Constants.DefaultPredImage;
 
             wasNotProcessed = false;
+
+            _dir = new ParticipantsDirection(owner);
         }
 
         #endregion
@@ -42,7 +44,7 @@ namespace OceanLib
 
         protected override void Move(Coordinate oldCoord, Coordinate newCoord, int iteration)
         {
-            Coordinate preyCoord = _owner.GetPreyNeighborCoord(OffSet);
+            Coordinate preyCoord = _dir.GetPreyNeighborCoord(OffSet);
 
             if (iteration != _lastIterationNumber)
             {
@@ -62,8 +64,16 @@ namespace OceanLib
             }
             else if (_timeToReproduce <= 0)
             {
-                AssignCellAt(oldCoord, Reproduce(oldCoord));
-                AssignCellAt(newCoord, new Predator(newCoord, _owner, _timeToReproduce, _timeToFeed));
+                if (preyCoord != null)
+                {
+                    AssignCellAt(oldCoord, Reproduce(oldCoord));
+                    AssignCellAt(preyCoord, new Predator(preyCoord, _owner, _timeToReproduce, Constants.TimeToFeed));
+                }
+                else
+                {
+                    AssignCellAt(oldCoord, Reproduce(oldCoord));
+                    AssignCellAt(newCoord, new Predator(newCoord, _owner, _timeToReproduce, _timeToFeed));
+                }
             }
             else
             {
@@ -76,9 +86,9 @@ namespace OceanLib
         {
             if (wasNotProcessed == true)
             {
-                if (_owner.GetEmptyNeighborCoord(OffSet) != OffSet)
+                if (_dir.GetEmptyNeighborCoord(OffSet) != OffSet)
                 {
-                    Move(OffSet, _owner.GetEmptyNeighborCoord(OffSet), iteration);
+                    Move(OffSet, _dir.GetEmptyNeighborCoord(OffSet), iteration);
                 }
             }
         }

@@ -4,12 +4,21 @@ namespace OceanLib
 {
     public class SmartPrey : Prey
     {
+        #region [Constructor]
+
         public SmartPrey(Coordinate offset, IOceanCell owner, int timeToProcreate) : base(offset, owner, timeToProcreate)
         {
             _timeToReproduce = timeToProcreate;
             image = Constants.DefaultSmartPreyImage;
+
             wasNotProcessed = false;
+
+            _dir = new ParticipantsDirection(owner);
         }
+
+        #endregion
+
+        #region [Methods]
 
         public override Prey Reproduce(Coordinate coord)
         {
@@ -28,7 +37,7 @@ namespace OceanLib
 
         protected override void Move(Coordinate oldCoord, Coordinate newCoord, int iteration)
         {
-            Coordinate predatorCoord = _owner.GetPredatorNeighborCoord(OffSet);
+            Coordinate predatorCoord = _dir.GetPredatorNeighborCoord(OffSet);
 
             if (iteration != _lastIterationNumber)
             {
@@ -57,11 +66,13 @@ namespace OceanLib
         {
             if (wasNotProcessed == true)
             {
-                if (_owner.GetEmptyNeighborCoord(OffSet) != OffSet)
+                if (_dir.GetEmptyNeighborCoord(OffSet) != OffSet)
                 {
-                    Move(OffSet, _owner.GetEmptyNeighborCoord(OffSet), iteration);
+                    Move(OffSet, _dir.GetEmptyNeighborCoord(OffSet), iteration);
                 }
             }
         }
+
+        #endregion
     }
 }

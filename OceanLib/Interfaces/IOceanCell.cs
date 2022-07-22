@@ -2,10 +2,8 @@
 {
     public interface IOceanCell
     {
-        Coordinate GetEmptyNeighborCoord(Coordinate coord);
-        Coordinate GetPreyNeighborCoord(Coordinate coord);
-        Coordinate GetPredatorNeighborCoord(Coordinate coord);
-
+        int NumRows { get; set; }
+        int NumCols { get; set; }
         Cell[,] Cells { get; }
     }
 }
