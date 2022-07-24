@@ -20,7 +20,7 @@ namespace OceanLib
 
         #region [Methods]
 
-        public override Prey Reproduce(Coordinate coord)
+        protected override Prey Reproduce(Coordinate coord)
         {
             if (coord != null)
             {

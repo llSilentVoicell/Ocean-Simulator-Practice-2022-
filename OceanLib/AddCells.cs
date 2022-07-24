@@ -1,8 +1,9 @@
 ﻿using System;
+using OceanLib.Interfaces;
 
 namespace OceanLib
 {
-    public class AddCells
+    public class AddCells : IAdd
     {
         #region [Variables]
 
@@ -20,7 +21,7 @@ namespace OceanLib
             AddPredators(owner);
         }
 
-        public Coordinate GetEmptyCellCoord(Ocean owner)
+        private Coordinate GetEmptyCellCoord(Ocean owner)
         {
             Coordinate coord = new Coordinate();
 

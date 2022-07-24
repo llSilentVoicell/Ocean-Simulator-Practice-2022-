@@ -53,6 +53,7 @@
     <Compile Include="CustomExceptions\InvalidValueForObjectsException.cs" />
     <Compile Include="CustomExceptions\OceanNumException.cs" />
     <Compile Include="CustomExceptions\OceanOverflowException.cs" />
+    <Compile Include="Interfaces\IAdd.cs" />
     <Compile Include="Interfaces\IDirection.cs" />
     <Compile Include="Interfaces\IDisplayElements.cs" />
     <Compile Include="Interfaces\IEnterDisplayData.cs" />

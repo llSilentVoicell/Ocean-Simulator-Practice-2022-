@@ -42,7 +42,7 @@ namespace OceanLib
 
         #region [Methods]
 
-        public void AssignCellAt(Coordinate coord, Cell cell)
+        protected void AssignCellAt(Coordinate coord, Cell cell)
         {
             if (coord != null)
             {

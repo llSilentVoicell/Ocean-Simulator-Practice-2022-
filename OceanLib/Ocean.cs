@@ -23,7 +23,7 @@ namespace OceanLib
         private int _numObstacles = Constants.DefaultNumObstacles;
 
         public static Randomize random;
-        private AddCells _addCells;
+        private IAdd _addCells;
         private ExceptionInform _inform = new ExceptionInform();
 
         #endregion
@@ -229,6 +229,10 @@ namespace OceanLib
 
         #region [Methods]
 
+        /// <summary>
+        /// The method responsible for the generation of ocean elements.
+        /// </summary>
+        /// <param name="oceanView">The parameter is used to access the data entered by the user.</param>
         public void Initialize(IOceanView oceanView)
         {
             CheckValues();
@@ -268,7 +272,7 @@ namespace OceanLib
             }
         }
 
-        public void InitializeCells(IOceanView oceanView)
+        private void InitializeCells(IOceanView oceanView)
         {
             _numPrey = oceanView.UserNumPrey;
             _numPredators = oceanView.UserNumPredators;
@@ -277,6 +281,10 @@ namespace OceanLib
             _addCells.AddAllCells(this);
         }
 
+        /// <summary>
+        /// The method in which the behavior of ocean elements is processed.
+        /// </summary>
+        /// <param name="iteration">The parameters we use to pass information about the current iteration number.</param>
         public void Run(int iteration)
         {
             for (int i = 0; i < _numRows; i++)
@@ -296,7 +304,7 @@ namespace OceanLib
             } 
         }
 
-        public void PrintExceptionMessage(string message)
+        private void PrintExceptionMessage(string message)
         {
             if (_isConsole)
             {

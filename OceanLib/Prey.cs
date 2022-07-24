@@ -29,7 +29,7 @@ namespace OceanLib
 
         #region [Methods]
 
-        public virtual Prey Reproduce(Coordinate coord)
+        protected virtual Prey Reproduce(Coordinate coord)
         {
             if (coord != null)
             {
