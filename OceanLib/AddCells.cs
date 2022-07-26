@@ -7,7 +7,7 @@ namespace OceanLib
     {
         #region [Variables]
 
-        readonly Random random = new Random((int)DateTime.Now.Ticks);
+        Randomize random = new Randomize();
 
         #endregion
 
@@ -27,8 +27,8 @@ namespace OceanLib
 
             for (int i = 0; i < (owner.NumCols * owner.NumRows); i++)
             {
-                int RowCoord = random.Next(0, owner.NumRows);
-                int ColCoord = random.Next(0, owner.NumCols);
+                int RowCoord = random.RandomNumber(owner.NumRows);
+                int ColCoord = random.RandomNumber(owner.NumCols);
 
                 if (owner.cells[RowCoord, ColCoord].GetType() == typeof(Cell))
                 {
@@ -79,7 +79,7 @@ namespace OceanLib
         {
             for (int i = 0; i < owner.NumPrey; i++)
             {
-                int smartOrNot = random.Next(0, 2);
+                int smartOrNot = random.RandomNumber(2);
 
                 if (smartOrNot == 0)
                 {

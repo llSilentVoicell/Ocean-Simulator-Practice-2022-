@@ -68,6 +68,8 @@
     <Compile Include="Randomize.cs" />
     <Compile Include="SmartPrey.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="OceanLibClassDiagram.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

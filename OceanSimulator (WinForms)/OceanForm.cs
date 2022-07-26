@@ -40,7 +40,13 @@ namespace OceanSimulator__WinForms_
 
             iterationsProgressBar.Maximum = display.UserNumIteration;
 
-            timer.Interval = Constants.TimerInterval;
+            maxTimerIntervalLabel.Text = timerIntervalTrackBar.Maximum.ToString();
+
+            timerIntervalTrackBar.Value = Constants.TimerInterval;
+
+            currentIntervalLabel.Text = timerIntervalTrackBar.Value.ToString();
+
+            timer.Interval = timerIntervalTrackBar.Value;
 
             myFirstOcean.Initialize(display);
 
@@ -67,6 +73,8 @@ namespace OceanSimulator__WinForms_
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            timer.Interval = timerIntervalTrackBar.Value;
+
             if (myFirstOcean.NumPrey > 0 && myFirstOcean.NumPredators > 0)
             {
                 if (iteration <= display.UserNumIteration)
@@ -95,6 +103,11 @@ namespace OceanSimulator__WinForms_
                 ((DataGridView)sender).SelectedCells[0].Selected = false;
             }
             catch { }
+        }
+
+        private void timerIntervalTrackBar_Scroll(object sender, EventArgs e)
+        {
+            currentIntervalLabel.Text = timerIntervalTrackBar.Value.ToString();
         }
 
         #endregion
